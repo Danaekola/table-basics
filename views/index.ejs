@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Score</title>
+  <meta charset="utf-8">
+  <script language="javascript" type="text/javascript" src="./javascripts/jquery-2.1.4.js"></script>
+  <script language="javascript" type="text/javascript" src="./javascripts/main.js"></script>
+</head>
+
+<body>
+  <table border="" id="table">
+    <thead>
+      <th data-id="name" data-order="1">姓名</th>
+      <th data-id="English" data-order="-1">英语</th>
+      <th data-id="Chinese" data-order="1">语文</th>
+      <th data-id="Math" data-order="-1">数学</th>
+
+    </thead>
+
+    <tbody id="sc">
+
+      <% for(var i = 0; i < content.length; i++){  %>
+
+        <tr>
+          <td>
+            <%= content[i].sname%>
+          </td>
+
+          <td>
+            <%= content[i].English%>
+          </td>
+          <td>
+            <%= content[i].Chinese%>
+          </td>
+          <td>
+            <%= content[i].Math%>
+          </td>
+          <td>
+            <button class='delete' value="<%= content[i].sno%>">Delete</button>
+          </td>
+
+        </tr>
+        <% } %>
+
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+  </table>
+  <form id="add">
+    姓名
+    <input type="text" id="name"></input>
+    <br> 英语
+    <input type="text" id="English"></input>
+    <br> 语文
+    <input type="text" id="Chinese"></input>
+    <br> 数学
+    <input type="text" id="Math"></input>
+    <br>
+    <input type="button" name="submit" id="submit" value="插入"></input>
+    <form>
+
+</body>
+
+</html>
