@@ -12,13 +12,10 @@ function group(rows) {
     result[val.sno].sno = val.sno;
   });
   for (var i in result) {
-
     attr.push(result[i]);
   }
-
   return attr;
 }
-
 
 router.all('*', function(res, req, next) {
   connection = mysql.createConnection({
@@ -34,12 +31,9 @@ router.all('*', function(res, req, next) {
 });
 
 router.get('/', function(req, res) {
-
   connection.query("select Student.sno,Cource.cno,Student.sname,Scores.scores,Cource.cname from Student,Scores,Cource where Student.sno=Scores.sno and Cource.cno=Scores.cno",
     function(err, rows) {
-
       var content = group(rows);
-
       res.render('index', {
         content: content
       });
@@ -49,31 +43,22 @@ router.get('/', function(req, res) {
 
 /* GET home page. */
 
-
 router.get('/score', function(req, res, next) {
   connection.query("select Student.sno,Cource.cno,Student.sname,Scores.scores,Cource.cname from Student,Scores,Cource where Student.sno=Scores.sno and Cource.cno=Scores.cno",
     function(err, rows) {
-
       var content = group(rows);
-
       var key = req.query.key;
       var flag = req.query.flag;
-
       var scores = content.sort(function(a, b) {
         return (a[key] - b[key]) * flag;
       });
-
-
       res.send(scores);
-
       connection.end();
     });
-
 });
 
 router.delete('/delete', function(req, res, next) {
   var sno = req.body.sno;
-
   connection.query("delete  from Scores where Scores.sno =" + sno,
     function(err, rows) {
       if (err) {
@@ -88,10 +73,8 @@ router.delete('/delete', function(req, res, next) {
 });
 router.post('/add', function(req, res, next) {
   var info = req.body;
-
   connection.query("insert into Student(sname) values('" + info.name + "')",
     function(err, rows) {
-
       connection.query("insert into Scores(scores,sno,cno) values(" + info.English + ',' + rows.insertId + ',' + "3),(" + info.Chinese + ',' + rows.insertId + ',' + "2),(" + info.Math + ',' + rows.insertId + ',' + "1);",
         function(err, rows) {
           if (err) {
@@ -103,9 +86,7 @@ router.post('/add', function(req, res, next) {
           }
           connection.end();
         });
-
     });
-
 });
 
 

@@ -12,21 +12,16 @@
   <table border="" id="table">
     <thead>
       <th data-id="name" data-order="1">姓名</th>
-      <th data-id="English" data-order="-1">英语</th>
+      <th data-id="English" data-order="1">英语</th>
       <th data-id="Chinese" data-order="1">语文</th>
-      <th data-id="Math" data-order="-1">数学</th>
-
+      <th data-id="Math" data-order="1">数学</th>
     </thead>
-
     <tbody id="sc">
-
       <% for(var i = 0; i < content.length; i++){  %>
-
         <tr>
           <td>
             <%= content[i].sname%>
           </td>
-
           <td>
             <%= content[i].English%>
           </td>
@@ -39,13 +34,10 @@
           <td>
             <button class='delete' value="<%= content[i].sno%>">Delete</button>
           </td>
-
         </tr>
         <% } %>
-
     </tbody>
     <tfoot>
-
     </tfoot>
   </table>
   <form id="add">
@@ -60,7 +52,6 @@
     <br>
     <input type="button" name="submit" id="submit" value="插入"></input>
     <form>
-
 </body>
 
 </html>
